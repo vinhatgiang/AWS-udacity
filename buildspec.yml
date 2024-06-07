@@ -4,12 +4,12 @@ phases:
   pre_build:
     commands:
       - aws --version
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.AWS_ACCOUNT_ID.amazonaws.com
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
     commands:
       - docker build -t coworking-checkin .
-      - docker tag coworking-checkin:latest $AWS_ACCOUNT_ID.dkr.ecr.AWS_ACCOUNT_ID.amazonaws.com/coworking-checkin:latest     
-      - docker tag coworking-checkin:latest $AWS_ACCOUNT_ID.dkr.ecr.AWS_ACCOUNT_ID.amazonaws.com/coworking-checkin:latest:1.0.${CODEBUILD_BUILD_NUMBER} 
+      - docker tag coworking-checkin:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/coworking-checkin:latest     
+      - docker tag coworking-checkin:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/coworking-checkin:latest:1.0.${CODEBUILD_BUILD_NUMBER} 
   post_build:
     commands:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/coworking-checkin:latest
