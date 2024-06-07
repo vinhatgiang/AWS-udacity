@@ -9,9 +9,9 @@ phases:
     commands:
       - docker build -t coworking-checkin .
       - docker tag coworking-checkin:latest 089597541794.dkr.ecr.us-east-1.amazonaws.com/coworking-checkin:latest     
-      - docker tag coworking-checkin:latest 089597541794.dkr.ecr.us-east-1.amazonaws.com/coworking-checkin:latest:$CODEBUILD_BUILD_NUMBER
+      - docker tag coworking-checkin:latest 089597541794.dkr.ecr.us-east-1.amazonaws.com/coworking-checkin:$CODEBUILD_BUILD_NUMBER
   post_build:
     commands:
       - docker push 089597541794.dkr.ecr.us-east-1.amazonaws.com/coworking-checkin:latest
-      - docker push 089597541794.dkr.ecr.us-east-1.amazonaws.com/coworking-checkin:latest:$CODEBUILD_BUILD_NUMBER
+      - docker push 089597541794.dkr.ecr.us-east-1.amazonaws.com/coworking-checkin:1.0.$CODEBUILD_BUILD_NUMBER
 
