@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - aws --version
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.$AWS_DEFAULT_REGION.amazonaws.com
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.erc.$AWS_DEFAULT_REGION.amazonaws.com
   build:
     commands:
       - docker build -t coworking-checkin .
